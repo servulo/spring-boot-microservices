@@ -1,4 +1,4 @@
-package br.com.sprj.microservice.supplier.service;
+package br.com.sprj.microservice.supplier.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

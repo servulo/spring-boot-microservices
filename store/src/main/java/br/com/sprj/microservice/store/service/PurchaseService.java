@@ -6,21 +6,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import br.com.sprj.microservice.store.SupplierClient;
 import br.com.sprj.microservice.store.dto.PurchaseDTO;
 import br.com.sprj.microservice.store.dto.SupplierDTO;
 
 @Service
+@SuppressWarnings("unused")
 public class PurchaseService {
 
 	@Autowired
-	private RestTemplate client;
+	private SupplierClient supplierClient;
 
 	public void makePurchase(PurchaseDTO purchaseDTO) {
-		ResponseEntity<SupplierDTO> exchange = client.exchange(
-				"http://supplier/info/" + purchaseDTO.getAddress().getState(), HttpMethod.GET, null, SupplierDTO.class);
+
+		SupplierDTO infoByState = supplierClient.getInfoByState(purchaseDTO.getAddress().getState());
 		
-		System.out.println(exchange.getBody().getAddress());
-		
+		System.out.println(infoByState.getAddress());
+
 	}
 
 }
