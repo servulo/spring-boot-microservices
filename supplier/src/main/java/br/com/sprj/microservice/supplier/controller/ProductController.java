@@ -17,6 +17,7 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
+	@RequestMapping("/{state}")
 	public List<Product> getProductsByState(@PathVariable("state") String state) {
 		return productService.getProductsByState(state);
 	}
